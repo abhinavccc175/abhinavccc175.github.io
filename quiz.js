@@ -53,6 +53,33 @@ if (!progressBar) {
 	throw new Error("Quiz progress bar is missing its container.");
 }
 
+const resourceGuide = document.createElement("section");
+resourceGuide.className = "quiz-resource";
+resourceGuide.setAttribute("aria-labelledby", "quiz-resource-title");
+
+const resourceTitle = document.createElement("h2");
+resourceTitle.id = "quiz-resource-title";
+resourceTitle.textContent = "French school system: quick guide";
+resourceGuide.append(resourceTitle);
+
+const resourceIntro = document.createElement("p");
+resourceIntro.textContent = "Use this overview as a reference while you explore the quiz.";
+resourceGuide.append(resourceIntro);
+
+const resourceList = document.createElement("ul");
+[
+	"Education is compulsory from ages 3 to 16.",
+	"École maternelle is for ages 3 to 6; collège is lower secondary school, generally for ages 11 to 15.",
+	"At lycée, students can follow general, technological, or vocational studies.",
+	"Le bac (baccalauréat) is a major qualification usually taken at the end of lycée."
+].forEach((fact) => {
+	const item = document.createElement("li");
+	item.textContent = fact;
+	resourceList.append(item);
+});
+resourceGuide.append(resourceList);
+questionHeading.before(resourceGuide);
+
 let currentQuestion = 0;
 let score = 0;
 
